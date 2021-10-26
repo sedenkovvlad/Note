@@ -6,16 +6,18 @@
 //
 
 import UIKit
+import ShimmerSwift
 
 class NoteViewController: UIViewController {
 
     @IBOutlet weak var tableVIew: UITableView!
     private lazy var notes = [Note]()
+    private lazy var addButton = UIButton()
     
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushCreateController))
+        configureAddButton()
     }
 }
 
@@ -86,5 +88,23 @@ extension NoteViewController {
         return formatter.string(from: date)
     }
     
+}
+
+
+//MARK: UI
+
+extension NoteViewController {
+    
+    func configureAddButton() {
+        addButton = AddButton(frame: CGRect(x: view.frame.width - 80, y: view.frame.height - 90, width: 50, height: 50))
+        addButton.addTarget(self, action: #selector(pushCreateController), for: .touchUpInside)
+        view.addSubview(addButton)
+        let shimmerView = ShimmeringView(frame: addButton.frame)
+        view.addSubview(shimmerView)
+        shimmerView.contentView = addButton
+        shimmerView.shimmerSpeed = 30
+        shimmerView.shimmerDirection = .up
+        shimmerView.isShimmering = true
+    }
 }
 

@@ -16,6 +16,8 @@
 		C2699B9127283C6E00DA826B /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2699B9027283C6E00DA826B /* NoteCell.swift */; };
 		C2699B93272841BB00DA826B /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2699B92272841BB00DA826B /* CreateViewController.swift */; };
 		C2699B962728453600DA826B /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2699B952728453600DA826B /* Note.swift */; };
+		C2699B9A27284E7600DA826B /* ShimmerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C2699B9927284E7600DA826B /* ShimmerSwift */; };
+		C2699B9C27284F2300DA826B /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2699B9B27284F2300DA826B /* AddButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,7 @@
 		C2699B9027283C6E00DA826B /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		C2699B92272841BB00DA826B /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		C2699B952728453600DA826B /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		C2699B9B27284F2300DA826B /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2699B9A27284E7600DA826B /* ShimmerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +68,7 @@
 			children = (
 				C2699B8F27283C5300DA826B /* Screen */,
 				C2699B942728452B00DA826B /* Model */,
+				C2699B9727284D1B00DA826B /* Helpers */,
 				C2699B7B27283AE900DA826B /* AppDelegate.swift */,
 				C2699B7D27283AE900DA826B /* SceneDelegate.swift */,
 				C2699B8427283AEA00DA826B /* Assets.xcassets */,
@@ -92,6 +97,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C2699B9727284D1B00DA826B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C2699B9B27284F2300DA826B /* AddButton.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -108,6 +121,9 @@
 			dependencies = (
 			);
 			name = Notes;
+			packageProductDependencies = (
+				C2699B9927284E7600DA826B /* ShimmerSwift */,
+			);
 			productName = Notes;
 			productReference = C2699B7827283AE900DA826B /* Notes.app */;
 			productType = "com.apple.product-type.application";
@@ -136,6 +152,9 @@
 				Base,
 			);
 			mainGroup = C2699B6F27283AE900DA826B;
+			packageReferences = (
+				C2699B9827284E7600DA826B /* XCRemoteSwiftPackageReference "ShimmerSwift" */,
+			);
 			productRefGroup = C2699B7927283AE900DA826B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -164,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2699B93272841BB00DA826B /* CreateViewController.swift in Sources */,
+				C2699B9C27284F2300DA826B /* AddButton.swift in Sources */,
 				C2699B8027283AE900DA826B /* NoteViewController.swift in Sources */,
 				C2699B9127283C6E00DA826B /* NoteCell.swift in Sources */,
 				C2699B7C27283AE900DA826B /* AppDelegate.swift in Sources */,
@@ -386,6 +406,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C2699B9827284E7600DA826B /* XCRemoteSwiftPackageReference "ShimmerSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BeauNouvelle/ShimmerSwift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C2699B9927284E7600DA826B /* ShimmerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2699B9827284E7600DA826B /* XCRemoteSwiftPackageReference "ShimmerSwift" */;
+			productName = ShimmerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C2699B7027283AE900DA826B /* Project object */;
 }
