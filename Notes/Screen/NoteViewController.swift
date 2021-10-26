@@ -14,6 +14,7 @@ class NoteViewController: UIViewController {
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushCreateController))
     }
 
 
@@ -33,5 +34,13 @@ extension NoteViewController: UITableViewDataSource {
 //MARK: TableViewDelegate
 extension NoteViewController: UITableViewDelegate {
     
+}
+
+//MARK: Navigation
+extension NoteViewController {
+    @objc private func pushCreateController(){
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Create") as! CreateViewController
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 

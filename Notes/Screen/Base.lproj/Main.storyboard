@@ -97,6 +97,39 @@
             </objects>
             <point key="canvasLocation" x="992.75362318840587" y="53.571428571428569"/>
         </scene>
+        <!--Create View Controller-->
+        <scene sceneID="Ey8-GI-tbL">
+            <objects>
+                <viewController storyboardIdentifier="Create" id="HsV-VF-9Ar" customClass="CreateViewController" customModule="Notes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y73-ZL-oL0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="md1-Ln-3aE">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2Qn-E7-xiU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2Qn-E7-xiU" firstAttribute="trailing" secondItem="md1-Ln-3aE" secondAttribute="trailing" id="R43-hK-Z6f"/>
+                            <constraint firstItem="md1-Ln-3aE" firstAttribute="leading" secondItem="2Qn-E7-xiU" secondAttribute="leading" id="T3D-vI-8Bl"/>
+                            <constraint firstItem="md1-Ln-3aE" firstAttribute="top" secondItem="2Qn-E7-xiU" secondAttribute="top" id="q5i-DD-SSl"/>
+                            <constraint firstItem="2Qn-E7-xiU" firstAttribute="bottom" secondItem="md1-Ln-3aE" secondAttribute="bottom" id="sXG-Mr-QBN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="md1-Ln-3aE" id="MJu-jd-RIX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dqg-pU-DpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1763.7681159420292" y="66.964285714285708"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZVG-X6-cwz">
             <objects>
@@ -117,6 +150,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

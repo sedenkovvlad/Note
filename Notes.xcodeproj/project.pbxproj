@@ -14,6 +14,7 @@
 		C2699B8527283AEA00DA826B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2699B8427283AEA00DA826B /* Assets.xcassets */; };
 		C2699B8827283AEA00DA826B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2699B8627283AEA00DA826B /* LaunchScreen.storyboard */; };
 		C2699B9127283C6E00DA826B /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2699B9027283C6E00DA826B /* NoteCell.swift */; };
+		C2699B93272841BB00DA826B /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2699B92272841BB00DA826B /* CreateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		C2699B8727283AEA00DA826B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2699B8927283AEA00DA826B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2699B9027283C6E00DA826B /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
+		C2699B92272841BB00DA826B /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				C2699B7F27283AE900DA826B /* NoteViewController.swift */,
+				C2699B92272841BB00DA826B /* CreateViewController.swift */,
 				C2699B9027283C6E00DA826B /* NoteCell.swift */,
 				C2699B8127283AE900DA826B /* Main.storyboard */,
 			);
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2699B93272841BB00DA826B /* CreateViewController.swift in Sources */,
 				C2699B8027283AE900DA826B /* NoteViewController.swift in Sources */,
 				C2699B9127283C6E00DA826B /* NoteCell.swift in Sources */,
 				C2699B7C27283AE900DA826B /* AppDelegate.swift in Sources */,
