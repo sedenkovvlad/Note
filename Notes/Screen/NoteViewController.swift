@@ -16,8 +16,6 @@ class NoteViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(pushCreateController))
     }
-
-
 }
 
 //MARK: TableViewDataSource

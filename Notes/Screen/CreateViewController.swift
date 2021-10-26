@@ -18,17 +18,12 @@ class CreateViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(addNote))
     }
-    
-
-
-
 }
 
 
 //MARK: Actions
 
 extension CreateViewController {
-    
     @objc private func addNote() {
         
     }
