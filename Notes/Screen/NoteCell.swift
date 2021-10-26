@@ -11,6 +11,6 @@ class NoteCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var SubtitleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
     
 }

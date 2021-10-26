@@ -67,8 +67,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="SubtitleLabel" destination="kZ6-UA-BCJ" id="f0p-7S-CEB"/>
                                             <outlet property="dateLabel" destination="RkL-Am-dZP" id="xNh-cM-C0B"/>
+                                            <outlet property="subtitleLabel" destination="kZ6-UA-BCJ" id="kP0-fo-mBS"/>
                                             <outlet property="titleLabel" destination="Eg1-hv-SPc" id="cbB-XY-fbd"/>
                                         </connections>
                                     </tableViewCell>

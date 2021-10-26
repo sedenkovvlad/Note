@@ -7,10 +7,15 @@
 
 import UIKit
 
+
+protocol CreateViewControllerDelegate: class {
+    func saveNotes(didFinishAdditing note: Note)
+}
+
 class CreateViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextView!
-    
+    weak var delegate: CreateViewControllerDelegate?
     
     
     //MARK: LifeCycle
@@ -22,9 +27,10 @@ class CreateViewController: UIViewController {
 
 
 //MARK: Actions
-
 extension CreateViewController {
     @objc private func addNote() {
-        
+        guard let text = textField.text else { return }
+        let note = Note(text: text, date: Date())
+        delegate?.saveNotes(didFinishAdditing: note)
     }
 }

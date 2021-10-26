@@ -62,8 +62,8 @@
 		C2699B7A27283AE900DA826B /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				C2699B942728452B00DA826B /* Model */,
 				C2699B8F27283C5300DA826B /* Screen */,
+				C2699B942728452B00DA826B /* Model */,
 				C2699B7B27283AE900DA826B /* AppDelegate.swift */,
 				C2699B7D27283AE900DA826B /* SceneDelegate.swift */,
 				C2699B8427283AEA00DA826B /* Assets.xcassets */,
