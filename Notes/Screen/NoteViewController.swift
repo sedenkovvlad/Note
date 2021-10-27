@@ -10,7 +10,7 @@ import ShimmerSwift
 
 class NoteViewController: UIViewController {
 
-    @IBOutlet weak var tableVIew: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     private lazy var notes = [Note]()
     private lazy var addButton = UIButton()
     
@@ -39,7 +39,10 @@ extension NoteViewController: UITableViewDataSource {
 }
 //MARK: TableViewDelegate
 extension NoteViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        pushCreateController()
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 //MARK: Navigation
@@ -47,6 +50,9 @@ extension NoteViewController {
     @objc private func pushCreateController(){
         let vc = storyboard?.instantiateViewController(withIdentifier: "Create") as! CreateViewController
         vc.delegate = self
+        if let indexPath = tableView.indexPathForSelectedRow {
+            vc.noteToEdit = notes[indexPath.row]
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -55,9 +61,17 @@ extension NoteViewController {
 extension NoteViewController: CreateViewControllerDelegate {
     func saveNotes(didFinishAdditing note: Note) {
         self.notes.append(note)
-        navigationController?.popViewController(animated: true)
         DispatchQueue.main.async { [weak self] in
-            self?.tableVIew.reloadData()
+            self?.tableView.reloadData()
+        }
+    }
+    func saveNotes(didFinishEditing note: Note) {
+        if let index = notes.firstIndex(of: note) {
+            let indexPath = IndexPath(row: index, section: 0)
+            notes[indexPath.row] = note
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
         }
     }
 }
@@ -76,7 +90,6 @@ extension NoteViewController {
         if split.count >= 2 {
             return String(split[1])
         }
-        
         return "No Subtitle text"
     }
     //date formatter
@@ -88,13 +101,16 @@ extension NoteViewController {
         return formatter.string(from: date)
     }
     
+    func sortNotes() {
+        notes.sort { $0.date > $1.date }
+    }
+    
 }
 
 
 //MARK: UI
 
 extension NoteViewController {
-    
     func configureAddButton() {
         addButton = AddButton(frame: CGRect(x: view.frame.width - 80, y: view.frame.height - 90, width: 50, height: 50))
         addButton.addTarget(self, action: #selector(pushCreateController), for: .touchUpInside)
