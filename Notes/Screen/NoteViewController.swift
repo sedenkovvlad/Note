@@ -18,6 +18,7 @@ class NoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAddButton()
+        updateData()
     }
 }
 
@@ -61,18 +62,14 @@ extension NoteViewController {
 extension NoteViewController: CreateViewControllerDelegate {
     func saveNotes(didFinishAdditing note: Note) {
         self.notes.append(note)
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
+        saveData()
     }
     func saveNotes(didFinishEditing note: Note) {
         if let index = notes.firstIndex(of: note) {
             let indexPath = IndexPath(row: index, section: 0)
             notes[indexPath.row] = note
         }
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
+        saveData()
     }
 }
 
@@ -107,9 +104,28 @@ extension NoteViewController {
     
 }
 
+//MARK: StorageManager
+extension NoteViewController {
+    func updateData() {
+        DispatchQueue.global().async { [weak self] in
+            self?.notes = StorageManager.load()
+            DispatchQueue.main.async {
+                self?.sortNotes()
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    func saveData() {
+        DispatchQueue.global().async { [weak self] in
+            StorageManager.save(notes: self?.notes)
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+    }
+}
 
 //MARK: UI
-
 extension NoteViewController {
     func configureAddButton() {
         addButton = AddButton(frame: CGRect(x: view.frame.width - 80, y: view.frame.height - 90, width: 50, height: 50))

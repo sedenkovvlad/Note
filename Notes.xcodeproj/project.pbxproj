@@ -18,6 +18,7 @@
 		C2699B962728453600DA826B /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2699B952728453600DA826B /* Note.swift */; };
 		C2699B9A27284E7600DA826B /* ShimmerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C2699B9927284E7600DA826B /* ShimmerSwift */; };
 		C2699B9C27284F2300DA826B /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2699B9B27284F2300DA826B /* AddButton.swift */; };
+		C2699B9E27294BC900DA826B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2699B9D27294BC900DA826B /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		C2699B92272841BB00DA826B /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		C2699B952728453600DA826B /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		C2699B9B27284F2300DA826B /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		C2699B9D27294BC900DA826B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				C2699B8F27283C5300DA826B /* Screen */,
+				C2699B9F27294E2200DA826B /* Manager */,
 				C2699B942728452B00DA826B /* Model */,
 				C2699B9727284D1B00DA826B /* Helpers */,
 				C2699B7B27283AE900DA826B /* AppDelegate.swift */,
@@ -103,6 +106,14 @@
 				C2699B9B27284F2300DA826B /* AddButton.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C2699B9F27294E2200DA826B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C2699B9D27294BC900DA826B /* StorageManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +200,7 @@
 				C2699B7C27283AE900DA826B /* AppDelegate.swift in Sources */,
 				C2699B7E27283AE900DA826B /* SceneDelegate.swift in Sources */,
 				C2699B962728453600DA826B /* Note.swift in Sources */,
+				C2699B9E27294BC900DA826B /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
