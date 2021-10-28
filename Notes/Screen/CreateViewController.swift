@@ -19,7 +19,7 @@ class CreateViewController: UIViewController {
     weak var delegate: CreateViewControllerDelegate?
     weak var noteToEdit: Note?
     
-    
+
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
