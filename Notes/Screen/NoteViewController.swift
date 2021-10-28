@@ -10,10 +10,7 @@ import ShimmerSwift
 
 class NoteViewController: UIViewController {
 
-    //view
     @IBOutlet weak var tableView: UITableView!
-   
-    //notes
     private lazy var notes = [Note]()
     
     //button
@@ -43,7 +40,6 @@ extension NoteViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NoteCell
         let note = notes[indexPath.row]
         cell.configure(at: note)
-        configureSelectedCellColor(cell: cell)
         return cell
     }
 }
@@ -207,14 +203,6 @@ extension NoteViewController {
     
     private func sortNotes() {
         notes.sort { $0.date > $1.date }
-    }
-    
-    private func configureSelectedCellColor(cell: UITableViewCell) {
-        let selectedCellView = UIView()
-        selectedCellView.backgroundColor = UIColor.orange.withAlphaComponent(0.2)
-        cell.multipleSelectionBackgroundView = selectedCellView
-        cell.selectedBackgroundView = selectedCellView
-        cell.tintColor = .orange
     }
 }
 
