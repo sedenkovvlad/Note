@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StorageManager {
+final class StorageManager {
     
     static let notesKey = "myNotes"
     

@@ -48,6 +48,7 @@ extension CreateViewController {
 //MARK: Helpers Function
 extension CreateViewController {
     func setupViewController() {
+        textField.becomeFirstResponder()
         if let note = noteToEdit {
             textField.text = note.text
             title = "Edit Note"

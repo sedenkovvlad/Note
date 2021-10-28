@@ -7,8 +7,7 @@
 
 import Foundation
 
-class Note: NSObject, Codable {
-    
+class Note: Equatable, Codable {
     var text: String
     var date: Date
     
@@ -16,4 +15,10 @@ class Note: NSObject, Codable {
         self.text = text
         self.date = date
     }
+    
+    static func == (lhs: Note, rhs: Note) -> Bool {
+        return lhs.date == rhs.date
+    }
+    
+   
 }
