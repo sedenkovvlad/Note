@@ -14,7 +14,18 @@ class NoteViewController: UIViewController {
     private lazy var notes = [Note]()
     
     //button
-    private lazy var addButton = UIButton()
+    private lazy var addButton : UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: view.frame.width - 80, y: view.frame.height - 80, width: 50, height: 50)
+        button.backgroundColor = .systemOrange
+        button.titleLabel?.font =  UIFont.systemFont(ofSize: 30)
+        button.setTitle("+", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = button.frame.width / 2
+        button.setTitleColor(.systemOrange, for: .highlighted)
+        button.addTarget(self, action: #selector(pushCreateController), for: .touchUpInside)
+        return button
+    }()
     private lazy var editButton = UIBarButtonItem()
     private lazy var cancelButton = UIBarButtonItem()
     private lazy var spacerButton = UIBarButtonItem()
@@ -24,9 +35,9 @@ class NoteViewController: UIViewController {
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureAddButton()
         updateData()
         configureNavigationBar()
+        configureAddButton()
     }
 }
 
@@ -40,6 +51,7 @@ extension NoteViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! NoteCell
         let note = notes[indexPath.row]
         cell.configure(at: note)
+        configureSelectedCellColor(cell: cell)
         return cell
     }
 }
@@ -105,14 +117,14 @@ extension NoteViewController {
         navigationItem.rightBarButtonItems = [cancelButton]
         navigationController?.isToolbarHidden = false
         toolbarItems = [spacerButton, deleteAllButton]
-        addButton.removeFromSuperview()
+        addButton.isHidden = true
         tableView.setEditing(true, animated: true)
     }
     
     @objc private func cancelEditingMode() {
         navigationItem.rightBarButtonItems = [editButton]
         navigationController?.isToolbarHidden = true
-        configureAddButton()
+        addButton.isHidden = false
         tableView.setEditing(false, animated: true)
     }
     
@@ -120,9 +132,7 @@ extension NoteViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let deleteAction = UIAlertAction(title: "Delete All", style: .destructive) { [weak self] _ in
-            self?.notes.removeAll()
-            self?.saveData()
-            self?.cancelEditingMode()
+            self?.deleteAll()
         }
         
         alert.addAction(cancelAction)
@@ -134,19 +144,30 @@ extension NoteViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let deleteAction = UIAlertAction(title: "Delete Selected", style: .destructive) { [weak self] _ in
-            if let rows = self?.tableView.indexPathsForSelectedRows {
-                let sortedArray = rows.sorted { $0.row < $1.row }
-                for i in (0...sortedArray.count - 1).reversed() {
-                    self?.notes.remove(at: sortedArray[i].row)
-                }
-            }
-            self?.cancelEditingMode()
-            self?.saveData()
+            self?.deleteSelected()
         }
         
         alert.addAction(cancelAction)
         alert.addAction(deleteAction)
         present(alert, animated: true)
+    }
+    
+    
+    private func deleteAll() {
+        notes.removeAll()
+        saveData()
+        cancelEditingMode()
+    }
+    
+    private func deleteSelected() {
+        if let rows = tableView.indexPathsForSelectedRows {
+            let sortedArray = rows.sorted { $0.row < $1.row }
+            for i in (0...sortedArray.count - 1).reversed() {
+                notes.remove(at: sortedArray[i].row)
+            }
+        }
+        cancelEditingMode()
+        saveData()
     }
 }
 
@@ -164,22 +185,11 @@ extension NoteViewController {
     }
 }
 
-//MARK: - ScrollViewDelegate
-extension NoteViewController: UIScrollViewDelegate {
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        addButton.isHidden = true
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        addButton.isHidden = false
-    }
-}
 
 //MARK: Helpers
 extension NoteViewController {
+  
     private func configureAddButton() {
-        addButton = AddButton(frame: CGRect(x: view.frame.width - 80, y: view.frame.height - 90, width: 50, height: 50))
-        addButton.addTarget(self, action: #selector(pushCreateController), for: .touchUpInside)
         view.addSubview(addButton)
         let shimmerView = ShimmeringView(frame: addButton.frame)
         view.addSubview(shimmerView)
@@ -198,9 +208,15 @@ extension NoteViewController {
         spacerButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         deleteAllButton = UIBarButtonItem(title: "Delete All", style: .plain, target: self, action: #selector(deleteAllNotes))
         deleteButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteSelectedNotes))
-        tableView.allowsMultipleSelectionDuringEditing = true
     }
-    
+
+    private func configureSelectedCellColor(cell: UITableViewCell) {
+        let selectedCellView = UIView()
+        selectedCellView.backgroundColor = UIColor.orange.withAlphaComponent(0.2)
+        cell.multipleSelectionBackgroundView = selectedCellView
+        cell.selectedBackgroundView = selectedCellView
+        cell.tintColor = .orange
+    }
     private func sortNotes() {
         notes.sort { $0.date > $1.date }
     }

@@ -17,8 +17,8 @@ class CreateViewController: UIViewController {
 
     @IBOutlet weak var textField: UITextView!
     
-    lazy var doneButton = UIBarButtonItem()
-    lazy var saveButton = UIBarButtonItem()
+    private lazy var doneButton = UIBarButtonItem()
+    private lazy var saveButton = UIBarButtonItem()
     weak var delegate: CreateViewControllerDelegate?
     weak var noteToEdit: Note?
     
@@ -26,11 +26,9 @@ class CreateViewController: UIViewController {
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(addNote))
-        doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(hideKeyboard))
-        navigationItem.rightBarButtonItems = [saveButton]
-        setupViewController()
-        notification()
+        configureNavigationBar()
+        configureViewController()
+        keyboardNotification()
     }
 }
 
@@ -53,7 +51,7 @@ extension CreateViewController {
 
 //MARK: Helpers Function
 extension CreateViewController {
-    func setupViewController() {
+    private func configureViewController() {
         textField.becomeFirstResponder()
         if let note = noteToEdit {
             textField.text = note.text
@@ -62,12 +60,17 @@ extension CreateViewController {
             title = "Add Note"
         }
     }
+    private func configureNavigationBar() {
+        saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(addNote))
+        doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(hideKeyboard))
+        navigationItem.rightBarButtonItems = [saveButton]
+    }
 }
 
 //MARK: Hide Keyboard
 extension CreateViewController {
     
-    private func notification() {
+    private func keyboardNotification() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -97,7 +100,5 @@ extension CreateViewController {
     @objc private func hideKeyboard() {
         textField.endEditing(true)
     }
-    
-    
-    
+
 }
